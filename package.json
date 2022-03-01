@@ -1,0 +1,23 @@
+{
+  "name": "mern-example",
+  "version": "1.0.0",
+  "description": "npm init",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Judzhin/mern-example.git"
+  },
+  "keywords": [
+    "mern",
+    "react"
+  ],
+  "author": "Judzhin Miles <msbios@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Judzhin/mern-example/issues"
+  },
+  "homepage": "https://github.com/Judzhin/mern-example#readme"
+}

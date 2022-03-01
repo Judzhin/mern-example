@@ -1,1 +1,3 @@
 # mern-example
+
+npm init
