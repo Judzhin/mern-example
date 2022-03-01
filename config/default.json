@@ -1,0 +1,5 @@
+{
+  "appPort": 5000,
+  "appSecret": "SecretString",
+  "mongoUri": "mongodb+srv://root:root@cluster0.lullz.mongodb.net/mern-examlpe?retryWrites=true&w=majority"
+}
