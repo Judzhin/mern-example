@@ -7,6 +7,8 @@
     "start": "node app.js",
     "server": "nodemon app.js",
     "stop": "kill -9 $(lsof -i :5000)",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

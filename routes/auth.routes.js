@@ -6,6 +6,7 @@ const config = require('config');
 const router = Router();
 const User = require('../models/User');
 
+
 // [/api/auth]/register
 router.post('/register', [
     check('email', 'Некорректный email').isEmail(),
@@ -80,11 +81,16 @@ router.post('/login', [
             });
         }
 
+        const userId = user.id;
         const token = jwt.sign(
-            {userId: user.id},
+            //{userId: user.id},
+            {userId},
             config.get('appSecret'),
             {expiresIn: '1h'}
         );
+
+        //res.json({token, userId: user.id});
+        res.json({token, userId});
 
     } catch (e) {
         res.status(500).json({
