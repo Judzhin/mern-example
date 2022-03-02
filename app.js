@@ -5,6 +5,9 @@ const mongoose = require('mongoose');
 
 const app = express();
 
+// ADD Middleware
+app.use(express.json({extended: true}));
+
 // Register routes
 app.use('/api/auth', require('./routes/auth.routes'));
 

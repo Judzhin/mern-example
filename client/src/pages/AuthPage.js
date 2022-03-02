@@ -1,4 +1,6 @@
-import React, {Component, useState} from 'react';
+import React, {Component, useEffect, useState} from 'react';
+import {useHttp} from "../hooks/http.hook";
+import {useMessage} from "../hooks/message.hook";
 
 /**
  *
@@ -6,10 +8,16 @@ import React, {Component, useState} from 'react';
  * @constructor
  */
 export const AuthPage = () => {
-
+    const message = useMessage()
+    const {loading, error, request, clearError} = useHttp()
     const [form, setForm] = useState({
         email: '', password: ''
     });
+
+    useEffect(() => {
+        message(error)
+        clearError()
+    }, [error, message])
 
     /**
      *
@@ -18,6 +26,15 @@ export const AuthPage = () => {
     const onChangeHandler = event => {
         setForm({...form, [event.target.name]: event.target.value});
         console.log({...form});
+    }
+
+    const onRegistrationHandler = async () => {
+        try {
+            const data = await request('/api/auth/register', 'POST', {...form})
+            console.log('Data', data)
+        } catch (e) {
+
+        }
     }
 
     return (
@@ -56,8 +73,18 @@ export const AuthPage = () => {
                         </div>
                     </div>
                     <div className="card-action">
-                        <button className={"btn yellow darken-4"} style={{marginRight: 10}}>Войти</button>
-                        <button className={"btn grey lighten-1 black-text"}>Регистрация</button>
+                        <button
+                            className={"btn yellow darken-4"}
+                            style={{marginRight: 10}}
+                            disabled={loading}>
+                            Войти
+                        </button>
+                        <button
+                            onClick={onRegistrationHandler}
+                            className={"btn grey lighten-1 black-text"}
+                            disabled={loading}>
+                            Регистрация
+                        </button>
                     </div>
                 </div>
             </div>
