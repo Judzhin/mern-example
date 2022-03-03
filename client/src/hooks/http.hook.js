@@ -25,13 +25,17 @@ export const useHttp = () => {
                 throw new Error(data.message || 'Что-то пошло не так')
             }
 
-            setLoading(false)
+            // setLoading(false)
             return data
 
         } catch (e) {
-            setLoading(false)
+            console.log('Catch Exception:', e.message)
+            // setLoading(false)
             setError(e.message);
             throw e;
+        } finally {
+            // stop
+            setLoading(false)
         }
     }, []);
 
@@ -39,8 +43,8 @@ export const useHttp = () => {
 
     return {
         loading, request, error,
-        clearError() {
+        clearError: useCallback(() => {
             setError(null)
-        }
+        })
     }
 }

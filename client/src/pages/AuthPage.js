@@ -15,26 +15,26 @@ export const AuthPage = () => {
     });
 
     useEffect(() => {
+        console.log('Use Effect Error:', error)
         message(error)
         clearError()
-    }, [error, message])
+    }, [message, error, clearError])
 
     /**
      *
      * @param event
      */
     const onChangeHandler = event => {
+        console.log('On Change:', {...form});
         setForm({...form, [event.target.name]: event.target.value});
-        console.log({...form});
     }
 
     const onRegistrationHandler = async () => {
         try {
             const data = await request('/api/auth/register', 'POST', {...form})
             console.log('Data', data)
-        } catch (e) {
-
-        }
+            message(data.message)
+        } catch (e) {}
     }
 
     return (
